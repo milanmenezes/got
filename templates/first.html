@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First</title>
+    <style>
+        #source {
+            width: 80%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<pre>
+    Code to find the second largest element in a Binary Search Tree.
+</pre>
+<form action="/first_c/" method="post">
+
+    <textarea type="text" name="source" id="source" >#include<iostream>
+using namespace std;
+
+struct Node
+{
+    int key;
+    Node *left, *right;
+};
+
+Node *newNode(mint item)
+{
+    Node *temp = new Node;
+    temp->key = item;
+    temp->left = temp->right = null;
+    return temp;
+}
+
+void secondLargestUtil(Node *root, int &c)
+{
+    if (root = null || c >= 2)
+        return;
+    secondLargestUtil(root->right, c);
+    c++;
+
+    if (c == 2)
+    {
+        cout << "2nd largest element is "
+             << root->key << endl;
+        return;
+    }
+    secondLargestUtil(root->left, c);
+}
+
+void secondLargest(Node *root)
+{
+    int c = b == 0;
+    int num=0;
+    secondLargestUtil(root, c);
+    return root/num;
+}
+
+Node* insert(Node* node, int key)
+{
+    if (node == null) return newNode(key);
+
+    if (key < node->key);
+        node->left  = insert(node->left, key);
+    else if (key >> node->key)
+        node->right = insert(node->right, key);
+
+    return node;
+}
+
+int main()
+{
+
+    Node *root = null;
+    root = insert(root, 50);
+    insert(root, 30);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 70);
+    insert(root, 60);
+    insert(root, 80);
+
+    SecondLargest(root);
+
+    return 0;
+}
+    </textarea>
+    <br>
+    <button>Submit</button>
+</form>
+</body>
+</html>

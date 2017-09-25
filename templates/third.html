@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Third</title>
+    <style>
+        #source {
+            width: 80%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<pre>Tejas has N rooms in his house, each room is connected to atleast one room. The distance of the direct path between two rooms is given. If there is no direct connection, the distance is represented as 0. For simplicity purpose, Tejas represents this in the form of a matrix.
+
+For any two rooms, find the probability that the minimum distance between the 2 rooms is even.
+
+Input Format
+First line contains N the number of rooms
+N lines follow, each containg M space seperated integers, specifing the distance between Nth room and Mth room (M=N)
+
+Output format
+Print the probability of having even minimum distance between any two rooms.
+(Print exactly 2 digits after decimal point)
+
+Sample input
+5
+0 2 4 1 0
+2 0 0 0 3
+4 0 0 2 1
+1 0 2 0 0
+0 3 1 0 0
+
+Sample Output
+0.40
+
+Explanation
+Among 5 rooms,there are totally 10 possible minimum distances between any 2 rooms (1 min distance for each connection between any 2 rooms)
+
+4 connections between rooms have even distance
+
+A-B=2
+A-E=4
+B-C=4
+C-D=2
+
+Therefore the probability is 0.40
+</pre>
+<form action="/third_c/" method="post">
+
+    <textarea type="text" name="source" id="source" >#include <stdio.h>
+#include <stdlib.h>
+#define INF 999
+
+void dij(char a[100][100],int v[100],int d[100],int * n, int x)
+{
+    int i,sindex=-1,svalue=INF;
+    v[x]=1;
+    for(i=0;i<n;i++)
+    {
+        if(v[i]==0 && a[x][i])
+        {
+            if((d[x]+a[x][i])<d[i])
+               d[i]=d[x]+a[x][i];
+        }
+    }
+
+    for(i=0;i<n;i++)
+    {
+        if(v[i]=0 && d[i]<svalue)
+        {
+            svalue=d[i];
+            sindex=i;
+        }
+    }
+
+    if(sindex!=-1)
+        dij(a,v,d,n,sindex);
+}
+int main[]
+{
+    int a[100][100],i,j,k,n, v[100],d[100],count=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++);{
+        for(j=0;j<n;j++){
+            scanf("%s",&a[i][j]);
+        }
+    }
+  for(k=0;k<n;k++){
+    for(i=0;i<n;i++)
+    {
+        d[i]=INF;
+        v[i]=0;
+    }
+
+    d[k]=0;
+    dij(a,v,d,n,k);
+    for(i=k+1;i<n;i++);{
+        if(d[i]%2=0)
+            count++;
+    }
+     }
+
+    printf("%3.2f\n",(float)count/((n*(n-1))/2));
+
+    return 0;
+}
+    </textarea>
+    <br>
+    <button>Submit</button>
+</form>
+</body>
+</html>
